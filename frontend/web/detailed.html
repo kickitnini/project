@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="./jquery-1.12.4.js"></script>
+		<title></title>
+		<style type="text/css">
+			body {
+				background-color: #fff;
+				padding: 0;
+				margin: 0;
+			}
+			
+			a {
+				text-decoration: none;
+			}
+			
+			ul {
+				margin: 0;
+			}
+			
+			li {
+				list-style: none;
+			}
+			
+			/* . 类选择器 */
+			.rec {
+				display: block;
+				width: 22px;
+				height: 32px;
+				background-color: rgba(0,0,0,.2);
+				color: rgba(255,255,255,.4);
+				line-height: 30px;
+				text-align: center;
+				text-decoration: none;
+				font-size: 36px;
+				position: absolute;
+				top:50%;
+				margin-top: -20px;
+				z-index: 2;
+			}
+			
+			.rec:hover {
+				background-color: rgba(0,0,0,.5);
+			}
+			
+			.arrow-right {
+				right: 0;
+			}
+			
+			.clearfix:after {
+				content: "";
+				height: 0;
+				clear: both;
+				visibility: hidden;
+				display: block;
+			}
+			
+			.left {
+				float: left;
+			}
+			
+			.right {
+				float: right;
+			}
+			
+			.clearfix {
+				*zoom: 1;
+			}
+			
+			.container {
+				width: 1190px;
+				margin: 0 auto;
+			}
+						
+			/* head */
+			#head {
+				background-color: #fff;
+				height: 230px;
+			}
+			
+			#head>.shortcut {
+				height: 30px;
+				width: 100%;				
+				background-color: #e3e4e5;
+				line-height: 30px;
+				border: 1px solid #ddd;
+			}
+
+			#head>.container {
+				height: 80px;
+				position: relative;
+			}
+			
+			#head>.container>.logo {
+				width: 250px;
+				height: 60px;
+				position: absolute;
+				left: 0;
+				padding: 20px 0;
+			}
+			
+			#head>.container>.logo>a {
+				display: inline-block;
+				width: 150px;
+				height: 60px;
+				background: url(//misc.360buyimg.com/jdf/1.0.0/unit/global-header/1.0.0/i/jdlogo-201708-@1x.png) no-repeat 0 0;
+				text-indent: -20000px;
+			}
+			
+			#head>.container>.logo>span {
+				display: inline-block;
+				/* float: right; */
+				color: #666;
+				font-size: 12px;
+				font-weight: 400;
+				position: relative;
+				margin-top: 13px;
+				height: 27px;
+				font-family: simsun;
+				text-align: center;
+				line-height: 27px;
+				width: 75px;
+				border: 1px solid #DFDFDF;
+				background-color: #f9f9f9;
+			}
+			
+			#head>.shortcut>.nav {				
+				margin: 0 auto;
+			}
+			
+			#head>.shortcut>.nav>.left {
+				float: left;
+				padding: 0;
+			}
+			
+			#head>.shortcut>.nav>.left>li {
+				float: left;
+				margin-right: 10px;
+			}
+				
+			/* #head>.container>.nav>.right, */
+			#head>.container>.search {
+				float: right;
+			}
+						
+			#head>.shortcut>.nav>.right>li {
+				float: left;
+				margin: 0 5px;
+				color: #999;
+			}
+			
+			#head>.shortcut>.nav>ul a {
+				color: #999;
+				font-size: 12px;
+				text-decoration: none;
+			}
+			
+			#head>.shortcut>.nav>ul a:hover {
+				color: #c81623;
+			}
+			
+			#head>.shortcut>.nav>ul span {
+				color: #f00;
+			}
+			
+			#head>.container>.search {
+				height: 60px;
+				width: 880px;
+				line-height: 60px;
+				position: relative;
+				overflow: hide;
+			}
+			
+			#head>.container>.search.fixed {
+				position: fixed;
+				top: 0;
+				z-index: 10;
+				background-color: #fff;
+				border-bottom: 2px solid #f10214;
+				width: 100%;
+				height: 48px;
+				left: -5px;
+			}
+			
+			#head>.container>.search>div.fixed {
+				left: 475px;
+				position: absolute;
+				top: 7px;
+			}
+			
+			#head>.container>.search>div.fixed>input {
+				background-color: #efefef;
+			}
+			
+			#head>.container>.search>div.fixed>div {
+				margin-top: -25px;
+			}
+			
+			#head>.container>.search.fixed>img {
+				display: none;
+			}
+			
+			
+			#head>.container>.search>div,
+			#head>.container>.hotword {
+				width: 565px;
+				height: 35px;
+				float: left;
+				overflow: hide;
+			}
+			
+			
+			#head>.container>.search>div>input {
+				width: 458px;
+				height: 30px;
+				position: absolute;
+				bottom: 0;
+				background: #fff url(image/search.png) no-repeat 430px;
+				font-size: 16px;
+				border: 2px solid #B61D1D;
+				color: #ccc;
+				bottom: 2px;
+				left: 20px;
+			}
+			
+			#head>.container>.search>div>span {
+				display: inline-block;
+				width: 52px;
+				height: 36px;
+				color: #fff;
+				background-color: #B61D1D;
+				position: absolute;
+				font-size: 12px;
+				line-height: 36px;
+				text-align: center;
+				bottom: 2px;
+				left: 482px;
+				
+			}
+			
+			#head>.container>.search>div>span:last-child {
+				left: 534px;
+				background-color: #474e5c;
+			}
+			
+			
+			#head>.container>.search>div>.createDiv {
+				position: absolute;
+				top: 60px;
+				border: 1px solid #ccc;
+			}
+			
+			#head>.container>.search>div>.createDiv>.histry {
+				width: 490px;
+				height: 30px;
+				background-color: #fff;
+				font-size: 12px;
+				padding: 0 5px;
+				line-height: 30px;
+				
+			}
+			
+			/* #head>.container>.search>div>.createDiv>.histry>a {
+				color: #005aao;
+				width: 430px;
+				display: inline-block;
+				height: 30px;
+			} */
+			#head>.container>.search>div>.createDiv>.histry>span {
+				float: right;
+				color: #ccc;
+			
+			}
+				
+			
+			#head>.container>.search>div img {
+				width: 50px;
+				height: 37px;
+				position: absolute;
+				bottom: 0;
+				left: 502px;
+			}
+			
+			#head>.container>.search>span {
+				display: inline-block;
+				width: 95px;
+				height: 34px;
+				border: 1px solid #DFDFDF;
+				padding: 0 20px;
+				font-size: 12px;
+				color: #666;
+				text-align: center;
+				line-height: 34px;
+				background-color: #F0F0F0;
+				position: absolute;
+				bottom: 2px;
+				right: 65px;
+			}
+			
+			
+			#head>.container>.hotword {
+				margin-left: 110px;
+				position: absolute;
+				left: 180px;
+				top: 65px;
+			}
+			
+			#head>.container>.hotword>ul>li>a {
+				float: left;
+				margin-left: 10px;
+				color: #999;
+				font-size: 12px;
+				text-decoration: none;
+			}
+			#head>.container>.hotword>ul>li>a:hover {
+				color: #c81623;
+			}
+			
+			
+			#head>.container>.hotword>ul>li span {
+				color: #f00;
+			}
+			
+			#head>.container>.subnav {
+				width: 950px;
+				height: 35px;
+				float: right;
+				line-height: 35px;
+			}
+			
+			#head>.container>.subnav>ul>li {
+				float: left;
+				margin-left: 25px;
+				font-size: 8px;
+				color: #999;
+				padding-top: 0px;
+			}
+			
+			#head>.container>.subnav>ul>li>a {
+				text-decoration: none;
+				font-size: 14px;
+				color: #000;
+			}	
+			
+			#head>.container>.subnav>ul>li>a:hover {
+				color: #c81623;
+			}
+			
+			
+			#head>.container>.subnav>img {
+				margin-top: -15px;
+			}
+			
+			#head>.bot-img {
+				margin: 0 auto;
+				width: 1920px;
+				height: 140px;
+				background: no-repeat url(image/ap.jpg) -210px;
+			}
+			
+			/* #head>.bot-img>img {
+			}
+			 */
+			#sub-nav,
+			#sub-nav-2 {
+				height: 40px;
+				background-color: #333333;
+				font-size: 14px;
+				margin: 0 auto;
+			}
+		
+			#sub-nav-2 {
+				background-color: #f2f2f2;
+				color: #666;
+			}
+		
+				.nav-container {
+					margin: 0 auto;
+					height: 100%;
+					position: relative;
+				}
+		
+			.nav-container>ul {
+				padding-left: 15px;
+				padding-top: 10px;
+				width: 700px;
+			}
+		
+			.nav-container>ul>li {
+				float: left;
+				margin-right: 15px;
+			}
+			
+			#sub-nav>.nav-container>ul>li>a {
+				color: #fcf9f9;
+				font-weight: 500;
+			}
+			
+			#sub-nav-2>.nav-container ul>li>a {
+				color: #666;
+			}
+			
+			#sub-nav>.nav-container>ul>li:first-child>a {
+				font-weight: 700;
+			}
+			
+			#sub-nav>.nav-container>.nav-search,
+			#sub-nav-2>.nav-container>.nav-right {
+				position: absolute;
+				right: 0;
+				bottom: 3px;
+				width: 188px;
+				height: 29px;
+			}
+			
+			#sub-nav>.nav-container>.nav-search>input {
+				width: 130px;
+				line-height: 22px;
+				height: 22px;
+				border-radius: 11px 0 0 11px;
+				padding:0 0 0 10px;
+				color: #c9c9c9;
+				vertical-align: top;
+				outline: none;
+			border: solid 1px #e1e1e1;
+			}
+			
+			#sub-nav>.nav-container>.nav-search>span {
+				margin-left: -5px;
+				padding: 0 10px;
+				height: 24px;
+				width: 20px;
+				cursor: pointer;
+				border-top-right-radius: 11px;
+				border-bottom-right-radius: 11px;
+				background: #444 url(//img13.360buyimg.com/cms/jfs/t3121/284/4170076300/1201/43e1ad98/583543d4Nc7e0c1a4.png) no-repeat center;
+				position: absolute;
+				right: 5px;
+				bottom: 5px;
+			}
+			
+			#sub-nav-2>.nav-container>.nav-right {
+				width: 470px;
+				right: 0;
+			}
+			
+			#sub-nav-2>.nav-container>.nav-right li {
+				float: left;
+				margin-right: 30px;
+			}
+			
+			#sub-nav-2>.nav-container>.nav-right li>img {
+				margin-top: 3px;
+			}
+			
+			#sub-nav-2>.nav-container>.nav-right li>span {
+				display: inline-block;
+				width: 16px;
+				height: 16px;
+				position: absolute;
+				top: 3px;
+			}
+			
+			#sub-nav-2>.nav-container>.nav-right li:nth-child(3)>span {			
+				right: 193px;			
+			}
+			
+			#sub-nav-2>.nav-container>.nav-right li:nth-child(4)>span {
+				right: 105px;
+			}
+			
+			#sub-nav-2>.nav-container>.nav-right .cus-sev {
+				background: url(//static.360buyimg.com/item/unite/1.0.76/components/default/contact/i/__sprite.png) -34px -16px;
+			}
+			
+			#sub-nav-2>.nav-container>.nav-right .flow {
+				background: url(//static.360buyimg.com/item/unite/1.0.76/components/default/contact/i/__sprite.png) -34px 0;
+			}
+			/* ================================ */
+			
+			#product {
+				margin-top: 10px;
+			}
+			
+			#product>div {
+				float: left;
+			}
+			
+			#product>.product-img {
+				width: 350px;
+				height: 462px;
+				background-color: #B7BCB8;
+				border: 1px solid #DFDFDF;
+				position: relative;
+			}
+			
+			#product>.product-info {
+				width: 680px;
+				height: 700px;
+				margin: 0 30px 0 24px;
+				background-color: seashell;
+			}
+			
+			#product>.track {
+				width: 210px;
+				height: 634px;
+				background-color: cornsilk;
+			}
+		
+				
+				/*产品介绍右侧：name*/
+				#product_intro>h1
+				{
+					width:840px;
+					font: 700 16px/1.5em Arial,Verdana,"microsoft yahei";
+					padding-bottom: 10px;
+					border-bottom: 1px dotted #ccc;
+				}
+				#product_intro>h1>b
+				{
+					display: block;
+					color: #e4393c;
+					font-size: 16px;
+				}
+				/*产品介绍右侧：summary*/
+				#summary
+				{
+					width: 600px;
+					padding: 10px 0;
+				}
+				#summary li
+				{
+					padding: 6px 0;
+					height:18px;
+				}
+				#summary a
+				{
+					color: #005aa0;
+				}
+				div.title
+				{
+					width:72px;
+					font-family: simsun;
+					float: left;
+					text-align:right;
+					height:23px;
+					line-height:23px;
+				}
+				div.content
+				{
+					width:524;
+					float: left;
+					min-height:23px;
+					line-height:23px;
+				}
+				#summary_price b
+				{
+					color: #e4393c;
+					font-size: 18px;
+					font-weight: bold;    
+				}
+				#summary_grade span
+				{
+					margin: 1px 5px 0 0;
+					background-position: -109px -239px;
+					display: inline-block;
+					width: 75px;
+					height: 14px;
+					background-image: url(../images/iconlist_1.png);
+					background-repeat: no-repeat;
+				}
+				#summary_grade a.words
+				{
+					margin: -3px 0 0 5px;
+					background: url(../images/words.png) 0 0 no-repeat;
+					display: inline-block;
+					padding-left: 27px;
+					width: 59px;
+					height: 24px;
+					line-height: 24px;
+					color:#CCC;
+					font-weight:400;
+				}
+				#summary_stock b
+				{
+					font-size:14px;
+				}
+				#summary_stock i
+				{
+					font-weight:bold;
+					font-style:normal;
+				}
+				#summary_service a {
+					display: inline-block;
+					height: 16px;
+					line-height: 16px;
+					margin-right: 5px;
+					background-image: url(../images/promise.png);
+					background-repeat: no-repeat;
+					vertical-align: middle;
+				}
+				.sendpay_211
+				{
+					width: 78px;
+					background-position: 0 -64px;
+				}
+				.jingdou_xiankuan
+				{
+					width: 80px;
+					background-position: 0 -576px;
+				}
+				.special_ziti
+				{
+				width: 43px;
+				background-position: 0 -320px;
+				}
+				/*选择购买*/
+				#choose
+				{
+					width: 598px;
+					border-top: 1px dotted #ddd;
+					padding-top: 10px;
+					margin-bottom: 20px;
+				}
+				#choose_color div.title
+				{
+					margin-top:6px;
+				}
+				#choose_color a
+				{
+					position:relative;
+					float:left;
+					margin: 2px 8px 2px 0;
+					padding:1px 6px 1px 1px;
+					border: 1px solid #ccc;
+				}
+				#choose_color a.selected
+				{
+					padding:0px 5px 0px 0px;
+					border: 2px solid #e4393c;
+				}
+				#choose_color a img
+				{
+					vertical-align:middle;
+				}
+				#choose_color a.selected b
+				{
+					display:block;
+					position: absolute;
+					bottom: 0;
+					right: 0;
+					width: 12px;
+					height: 12px;
+					overflow: hidden;
+					background-image: url(./image/iconlist_1.png);
+					background-repeat: no-repeat;
+					background-position: -202px -224px;
+				}
+				#choose_amount
+				{
+					clear:both;
+					padding-top:10px;
+				}
+				#choose_amount a.btn_reduce,#choose_amount a.btn_add
+				{
+					background-position: -216px -190px;
+					float:left;
+					background-image: url(images/iconlist_1.png);
+					background-repeat: no-repeat;
+					width: 15px;
+					height: 15px;
+					margin-top:5px;
+				}
+				#choose_amount a.btn_add
+				{
+					float:left;
+					background-position: -232px -190px;
+				}
+				#choose_amount input
+				{
+					width: 30px;
+					height: 16px;
+					border: 1px solid #ccc;
+					padding: 2px;
+					text-align: center;
+					float:left;
+					margin:0px 3px;
+				}
+				#choose_result
+				{
+					padding: 10px 0 0 10px;
+					clear:both;
+					color: #e4393c;
+				}
+				#choose_btns a
+				{
+					height: 38px;
+					line-height: 38px;
+					float: left;
+					margin:10px 6px 0px 0px;
+				}
+				a.choose_btn_append
+				{
+					width: 137px;
+					background-image: url(../images/iconlist_3.png);
+					background-repeat: no-repeat;
+					background-position: 0 0;
+				}
+				a.choose_baitiao_fq
+				{
+					width:100px;
+					background-image: url(image/baitiao_fq.png);
+				}
+				a.choose_mark
+				{
+					width:78px;
+					background-image: url(../images/iconlist_3.png);
+					background-position: 0 -307px;
+				}
+				div.m_buy
+				{
+					float: left;
+					border: 1px solid #ddd;
+					height: 40px;
+					padding:10px 70px 0px 10px;
+					background: url(../images/iconlist_4.png) right 3px no-repeat;
+					cursor: pointer;
+					margin-top: 6px;
+				}
+				div.m_buy span
+				{
+					margin-top:5px;
+				}
+				div.m_buy p
+				{
+					padding-top:5px;
+					color: #e4393c;
+					font-weight:bold;
+				}
+
+				/*送货地址的下拉选择框*/
+				#store_select
+				{
+					position: relative;
+					height: 26px;
+					margin-right: 6px;
+					float:left;
+				}
+				div.text
+				{
+					position:relative;
+					height: 23px;
+					background: #fff;
+					border: 1px solid #CECBCE;
+					padding: 0 20px 0 4px;
+					line-height: 23px;
+					overflow: hidden;
+					/*z-index:1;*/
+				}
+				div.textHover
+				{
+					border-bottom:2px solid #fff;
+				}
+				div.text p
+				{
+					line-height:23px;
+				}
+				div.text b
+				{
+					display: block;
+					position: absolute;
+					top: 0;
+					right: 0;
+					width: 17px;
+					height: 24px;
+					background-position: -264px -188px;
+					background-image: url(../images/iconlist_1.png);
+					background-repeat: no-repeat;
+				}
+				/*弹出的选择地址框*/
+				#store_content
+				{
+					position: absolute;
+					top: 25px;
+					left: -45px;
+					border: 1px solid #CECBCE;
+					width: 390px;
+					padding: 15px;
+					background: #fff;
+					-moz-box-shadow: 0 0 5px #ddd;
+					-webkit-box-shadow: 0 0 5px #ddd;
+					box-shadow: 0 0 5px #ddd;
+					z-index:20;
+					display: none;
+				}
+				#store_close
+				{
+					display:none;
+					position: absolute;
+					z-index: 21;
+					top: 20px;
+					left: 365px;
+					width: 17px;
+					height: 17px;
+					background-position: -257px -86px;
+					background-image: url(../images/iconlist_1.png);
+					background-repeat:no-repeat;
+					background-color:transparent;
+				}
+				#store_tabs
+				{
+					position:relative;
+					z-index:10;
+					width: 100%;
+					height: 26px;
+					float: left;
+					border-bottom: 2px solid #edd28b;
+					overflow: visible;
+				}
+				#store_tabs li
+				{
+					padding: 0 20px 0 10px;
+					background-color: #fff;
+					height: 25px;
+					float:left;
+					color: #005aa0;
+					cursor:pointer;
+					line-height:22px;
+					position:relative;
+					border: 1px solid #ddd;
+					border-bottom: 0;
+					margin-right:3px;
+				}
+				#store_tabs li.hover
+				{
+					border: 2px solid #edd28b;
+					border-bottom: 2px solid #fff;
+					line-height: 22px;
+					color: #005aa0;
+					z-index:20;
+				}
+				#store_tabs li b
+				{
+					position: absolute;
+					right: 4px;
+					top: 10px;
+					display: block;
+					width: 7px;
+					height: 5px;
+					overflow: hidden;
+					background-position: 0 -35px;
+					background-image: url(../images/iconlist_5.png);
+					background-repeat: no-repeat; 
+				}
+				#store_tabs li.hover b
+				{
+					background-position: 0 -28px;
+				} 
+				#store_items
+				{
+					padding-top:30px;
+					padding-left:10px;
+				}
+				#store_items li
+				{
+					line-height:38px;
+					float:left;
+					width:80px;
+					cursor:pointer;
+					color:#005aa0;
+					padding: 2px 0 2px 15px;
+				}
+				#store_items li a
+				{
+					color: #005aa0;
+					padding:2px 4px;
+				}
+				#store_items li a:hover
+				{
+					background-color:#005aa0;
+					color:#fff;
+					text-decoration:underline;
+				}
+
+			#product>.product-img>.s-box {
+				position: relative;
+				cursor: all-scroll;
+			}
+			
+			#product>.product-img>.s-box img {
+				width: 350px;
+				height: 350px;
+			}
+			
+			#product>.product-img>.s-box .square {
+				position: absolute;
+				background-color: yellow;
+				opacity: 0.5;
+				display: none;
+
+			}
+			
+			#product>.product-img>.s-box .mask{
+				width: 100%;
+				height: 100%;
+				opacity: 0;
+				position: absolute;
+				top:0;
+				left:0;
+			}
+			
+			#product>.product-img>.b-box{
+				position: absolute;
+				top:0;
+				left: 100%;
+				margin-left: 2px;
+				width: 500px;
+				height: 500px;
+				border: 1px solid #ccc;
+				display: none;
+				overflow: hidden;
+				z-index: 10;
+			}
+			.b-box img {
+				position: absolute;
+			}
+			
+			.img-list {
+				position: relative;
+			}
+
+			.img-list>ul{
+				margin-top: 20px;
+				overflow: hidden;
+				padding-left: 20px;
+			}
+			.img-list>ul>li{
+				float: left;
+				padding: 0 4px;
+			}
+			.img-list img{
+				width: 50px;
+				height: 50px;
+				border: 2px solid transparent;
+			}
+			.img-list img.img-active{
+				border: 2px solid red;
+			}
+			
+			.content-head {
+				height: 38px;
+				position: relative;
+				background-color: #f7f7f7;
+				border: 1px solid #eee;
+				/* line-height: 38px; */
+				
+			}
+			
+			.content-body {
+				background-color: #FFFFFF;
+			}
+			
+			#recommend>.content-head {
+				border-bottom: 1px solid #e4393c;
+			}
+			
+			#recommend .content-head>span {
+				font-size: 14px;
+				padding: 10px 25px;
+				background-color: #e4393c;
+				color: #fff;
+				width: 56px;
+				height: 18px;
+				display: inline-block;
+			}
+			
+			#recommend>.recom-body>img {			
+				width: 160px;
+				height: 160px;
+				margin-right: 40px;
+			}
+			
+			#recommend>.recom-body>img:last-child {
+				margin: 0;
+			}
+			
+			#product-detail>div {
+				float: left;
+			}
+			
+			#product-detail>.side-info {
+				width: 210px;
+				height: 2000px;
+				background-color: salmon;
+			}
+			
+			.side-info>.side-info-1,
+			.side-info>.side-info-2 {
+				border: 1px solid #ccc;
+				margin-left: -1px;
+				margin-bottom: 15px;
+			}
+			
+			.side-info-2 .content-head {
+				border-bottom: 1px solid #e4393c;
+			}
+			
+			#product-detail>.main-detail {
+				width: 970px;
+				height: 2000px;
+				float: right;
+				background-color: cornsilk;
+			}
+			
+			.side-info-1>.content-body {
+				height: 148px;
+			}
+			
+			#product-detail .side-info-1>.content-head {
+				padding: 0 10px;
+				line-height: 38px;
+			}
+			
+			/* id选择器 */
+			#product-detail .side-info-1>.content-head>span {
+				font: 700 14px "microsoft yahei";
+				color: #666;
+			}
+			
+			/* ===============選項第一个============ */
+			.side-info-2>.content-head>span {
+				font-size: 14px;
+				padding: 10px 25px;
+				color: #666;
+				height: 18px;
+				display: inline-block;
+			}
+			
+			.side-info-2>.content-head>span.span-active {
+				color: #fff;
+				background-color: #e4393c;
+			}
+			
+			.red {
+				background-color: red;
+				display: block;
+			}
+			
+			.green {
+				background-color: green;
+			}
+			
+			.blue {
+				background-color: blue;
+			}
+			
+			.content-body-list>.content-body {
+				height: 1800px;
+				display: none;
+			}
+			
+			.content-body-list>.content-body:first-child {
+				height: 1800px;
+				display: block;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="head">
+			<div class="shortcut">
+				<div class="nav container">
+					<ul class="left">
+						<li><a href="#">京东首页</a></li>
+						<li><a href="#">某地</a></li>
+					</ul>
+					<ul class="right">					
+						<li><a href="#">你好，请登录</a>&nbsp;&nbsp;<a href="#"><span>免费注册</span></a> |</li>
+						<li><a href="#">我的订单</a> |</li> 
+						<li><a href="#">我的京东</a> |</li> 
+						<li><a href="#">京东会员</a> |</li> 
+						<li><a href="#"><span>企业采购</span></a> |</li> 
+						<li><a href="#">客服服务</a> |</li> 
+						<li><a href="#">网站导航</a> |</li> 
+						<li><a href="#">手机京东</a></li> 
+					</ul>
+				</div>
+			</div>
+				
+			<div class="container clearfix">
+				<div class="logo">
+					<a href=""></a>
+					<span>全部分类</span>
+				</div>
+				<div class="search">
+					<div>
+						<input type="text"/><span>搜全站</span><span>搜本店</span>
+						<!-- <button type="button"><img src="./image/search2.png" ></button> -->
+					</div>
+					<span>我的购物车&ensp;&ensp;&ensp;></span>
+				</div>
+				<div class="hotword">
+					<ul>
+						<li><a href="#"><span>数码家电</span></a></li>
+						<li><a href="#">数码家电</a></li>
+						<li><a href="#">数码家电</a></li>
+						<li><a href="#">数码家电</a></li>
+						<li><a href="#">数码家电</a></li>
+						<li><a href="#">数码家电</a></li>
+						<li><a href="#">数码家电</a></li>
+						<li><a href="#">数码家电</a></li>
+						<li><a href="#">数码家电</a></li>
+					</ul>
+				</div>
+
+			</div>	
+			
+			<div class="bot-img">
+				
+			</div>
+		</div>
+		<!-- head  ===end=== -->
+		<!-- ===nav=== -->
+		<div id="sub-nav">
+			<div class="nav-container container">
+				<ul class="clearfix">
+					<li><a href="">首页</a></li>
+					<li><a href="">全部分类</a></li>
+					<li><a href="">所有商品</a></li>
+					<li><a href="">宝宝玩具</a></li>
+					<li><a href="">遥控玩具</a></li>
+					<li><a href="">卡通玩具</a></li>
+					<li><a href="">户外玩具</a></li>
+					<li><a href="">首发公告</a></li>
+				</ul>
+				<div class="nav-search">
+					<input type="text" value="益智早教" /><span></span>
+				</div>
+			</div>
+		</div>
+		<div id="sub-nav-2">
+			<div class="nav-container container">
+				<ul class="clearfix">
+					<li><a href="">玩具乐器&ensp;&ensp;></a></li>
+					<li><a href="">遥控/电动&ensp;&ensp;></a></li>
+					<li><a href="">遥控飞机&ensp;&ensp;></a></li>
+					<li><a href="">宝贝星(BBS)&ensp;&ensp;></a></li>
+				</ul>
+				<div class="nav-right">
+					<ul>
+						<li><img src="//img12.360buyimg.com/devfe/jfs/t16816/30/336197495/1605/3b956398/5a6e8578N92dc73c0.png" ></li>
+						<li><a href="">宝贝星玩具旗舰店</a></li>
+						<li><span class="cus-sev"></span><a href="">联系客服</a></li>
+						<li><span class="flow"></span><a href="">关注店铺</a></li>
+					</ul>													
+				</div>
+			</div>
+		</div>
+		<!-- ======nav========== -->
+		
+		
+		<div id="product" class="clearfix container">
+
+			<div class="product-img">
+				<div class="s-box">
+					<img src="./image/ap-m.jpg" >
+					<div class="square"></div>
+					<div class="mask"></div>
+				</div>
+				<div class="b-box">
+					<img src="./image/ap-b.jpg" >
+				</div>
+				<div class="img-list">
+					<ul data-index = '0'>
+						<li><img class="img-active" src="./image/ap-s.jpg" data-s = "./image/ap-m.jpg" data-b = "./image/ap-b.jpg"></li>
+						<li><img  src="./image/ap-s2.jpg" data-s = "./image/ap-m2.jpg" data-b = "./image/ap-b2.jpg"></li>
+						<li><img  src="./image/ap-s.jpg" data-s = "./image/ap-m.jpg" data-b = "./image/ap-b.jpg"></li>
+						<li><img  src="./image/ap-s2.jpg" data-s = "./image/ap-m2.jpg" data-b = "./image/ap-b2.jpg"></li>
+						<li><img  src="./image/ap-s.jpg" data-s = "./image/ap-m.jpg" data-b = "./image/ap-b.jpg"></li>
+					</ul>
+					<span class="rec arrow-left" >&lt;</span>
+					<span class="rec arrow-right" >&gt;</span>
+				</div>
+			</div>
+			
+			<div class="product-info">
+				<div id="sec-kill" style="width: 300px; height: 30px; line-height: 30px; background-color: #e4393c; color: #fff; text-align: center;"><a href="">链接无效</a></div>
+			
+				<!--产品简介-->
+				<div id="product_intro">
+					<!-- <div id="preview">
+					<p id="medimImgContainer">
+						<img id="mediumImg" src="images/products/product-s1-m.jpg"/>
+						<span id="mask"></span>
+						<span id="maskTop"></span>
+						<span id="largeImgContainer">
+											<img id="loading" src="images/loading.gif"/>
+											<img id="largeImg"/>
+										</span>
+					</p>
+					<h1>
+						<a class="backward_disabled"></a>
+						<a class="forward_disabled"></a>
+					</h1>
+					</div> -->
+					<h1><span>宝贝星（BBS） </span><b>遥控飞机大型耐摔四轴飞行器儿童玩具 32CM无摄像头（两块机身电池+终身保修）</b></h1>
+					<ul id="summary">
+					<li id="summary_price">
+						<div class="title">京&nbsp;东&nbsp;价：</div>
+						<div class="content">
+							<b>&nbsp; ￥128 &nbsp;</b>
+							<a href="#">(降价通知)</a>
+						</div>
+					</li>
+					<li id="summary_market">
+						<div class="title">商品编号：</div>
+							<div class="content">
+					    		<span>960148</span>
+							</div>
+					</li>
+					<li id="summary_grade">
+						<div class="title">商品评分：</div>
+						<div class="content">
+						<span></span>
+						<a href="#">(已有<b>47662</b>人评价)</a>
+						<a href="#" class="words">留言咨询</a>
+						</div>
+					</li>
+					<li id="summary_stock">
+						<div class="title">配送至：</div>
+						<div class="content">
+						<!--送货地址的下拉选择框-->
+						<div id="store_select">
+							<div class="text">
+							<p>北京海淀区大钟寺</p>
+							<b></b>
+							</div>
+							<div id="store_content">
+							<ul id="store_tabs">
+								<li class="hover">北京<b></b></li>
+								<li>海淀区<b></b></li>
+								<li>三环以内<b></b></li>
+							</ul>
+							<ul id="store_items">
+								<li><a href="#">北京</a></li>
+								<li><a href="#">上海</a></li>
+								<li><a href="#">天津</a></li>
+								<li><a href="#">重庆</a></li>
+								<li><a href="#">河北</a></li>
+								<li><a href="#">山西</a></li>
+								<li><a href="#">河南</a></li>
+								<li><a href="#">辽宁</a></li>
+								<li><a href="#">吉林</a></li>
+								<li><a href="#">黑龙江</a></li>
+								<li><a href="#">内蒙古</a></li>
+								<li><a href="#">江苏</a></li>
+								<li><a href="#">山东</a></li>
+								<li><a href="#">安徽</a></li>
+								<li><a href="#">浙江</a></li>
+								<li><a href="#">湖北</a></li>
+								<li><a href="#">福建</a></li>
+								<li><a href="#">四川</a></li>
+								<li><a href="#">云南</a></li>
+								<li><a href="#">新疆</a></li>
+								<li><a href="#">西藏</a></li>
+							</ul>
+							</div>
+							<div id="store_close"></div>
+							</div>
+							<b>有货</b>，23:00前完成下单，预计<i>明日（12月06日）</i>送达
+						</div>
+					</li>
+					<li id="summary_service">
+						<div class="title">服&nbsp;&nbsp;务：</div>
+						<div class="content">
+						由 <span>京东</span> 发货并提供售后服务。
+						支持：
+						<a class="sendpay_211" href="#"></a>
+						<a class="jingdou_xiankuan" href="#"></a>
+						<a class="special_ziti" href="#"></a>
+						</div>
+					</li>
+					</ul>
+					<ul id="choose">
+					<li id="choose_color">
+						<div class="title">选择颜色：</div>
+						<div class="content">
+						<a href="#" class="selected">
+							<img src="image\p_icon_01.jpg"/>
+							<span>薰衣草</span>
+							<b></b>
+						</a>
+						<a href="#">
+							<img src="image\p_icon_02.jpg"/>
+							<span>索菲亚玫瑰</span>
+							<b></b>
+						</a>
+						</div>
+					</li>
+					<li id="choose_amount">
+						<div class="title">购买数量：</div>
+						<div class="content">
+						<a href="#" class="btn_reduce"></a>
+						<input type="text" value="1"/>
+						<a href="#" class="btn_add"></a>
+						</div>
+					</li>
+					<li id="choose_result">
+						已选择<b>“薰衣草”</b>，<b>“4.26kg”</b>
+					</li>
+					<li id="choose_btns" class="clear">
+						<a href="#" class="choose_btn_append"></a>
+						<a href="#" class="choose_baitiao_fq"></a>
+						<a href="#" class="choose_mark"></a>
+						<div class="m_buy">
+						<span>客户端首次下单</span>
+						<p>送 5 元京券 </p>
+						</div>
+					</li>
+					</ul>
+				</div>
+							
+			<div class="track">
+			</div>
+		</div>
+		
+		<div id="recommend" class="container">
+			<div class="content-head">
+				<span>店长推荐</span>
+			</div>
+			<div class="recom-body">
+				<img src="image/rob.jpg">
+				<img src="image/rob.jpg">
+				<img src="image/rob.jpg">
+				<img src="image/rob.jpg">
+				<img src="image/rob.jpg">
+				<img src="image/rob.jpg">
+			</div>
+		</div>
+		
+		<div id="product-detail" class="container clearfix">
+			<div class="side-info">
+				<div class="side-info-1">
+					<div class="content-head">
+						<span>宝贝星玩具旗舰店</span>
+					</div>
+					<div class="content-body">						
+					</div>
+				</div>
+				<div class="side-info-1">
+					<div class="content-head">
+						<span>店内分类</span>
+					</div>
+					<div class="content-body">						
+					</div>
+				</div>
+			</div>
+			<div class="main-detail">
+				<div class="side-info-1">
+					<div class="content-head">
+						<span>陪伴计划·好券任领·尊享福利价</span>
+					</div>
+					<div class="content-body">						
+					</div>
+				</div>
+				<div class="side-info-2">
+					<div class="content-head">
+						<span class="span-active">商品介绍</span><span>规格与包装</span><span>售后保障</span>
+					</div>
+					<div class="content-body-list" data-index = "0">
+						<div class="content-body red"></div>
+						<div class="content-body green"></div>
+						<div class="content-body blue"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+
+		<script type="text/javascript" src="event.js"></script>		
+		<script src="animation.js" type="text/javascript" charset="utf-8"></script>		
+		<script src="event.js" type="text/javascript" charset="utf-8"></script>			
+		<script type="text/javascript">
+			var sBox = document.querySelector('#product>.product-img>.s-box');
+			var sImg = document.querySelector('#product>.product-img>.s-box img');
+			var listImgs = document.querySelectorAll('.img-list img');
+			var imgList = document.querySelector('.img-list');
+			var imgUl = document.querySelector('.img-list>ul');
+			var square = document.querySelector('#product>.product-img>.s-box .square');
+			var bBox = document.querySelector('#product>.product-img>.b-box');
+			var bImg = document.querySelector('#product>.product-img>.b-box img');
+			
+			// 鼠标移进img-list
+			imgList.addEvent('mouseover', function(){
+				var target = this.getTarget();
+				var oldI = parseInt(imgUl.dataset['index']);
+				for(var i = 0; i < listImgs.length; i++){
+					if(target === listImgs[i]){
+						if(i !== oldI){
+							changeSpans(imgUl, listImgs, oldI, i, 'img-active', 'index');							
+							bImg.src = target.getAttribute('data-b');
+							sImg.src = target.getAttribute('data-s');
+						}
+					}
+				}				
+			});
+			
+			// 鼠标移进s-box
+			
+			sBox.addEvent('mouseover', function(){
+				square.style.display ='block';
+				bBox.style.display ='block';
+				square.style.width = bBox.offsetWidth * sImg.offsetWidth / bImg.offsetWidth +'px';
+				square.style.height = bBox.offsetHeight * sImg.offsetHeight / bImg.offsetHeight +'px';
+								
+			});
+			
+			sBox.addEvent('mousemove', function(){
+				var e = e || window.event;
+				var x, y;
+				x=e.offsetX-square.offsetWidth/2;
+				y=e.offsetY-square.offsetHeight/2;
+				if(x < 0){
+					x = 0;
+				}
+				
+				if(x > sBox.offsetWidth - square.offsetWidth){
+					x = sBox.offsetWidth - square.offsetWidth;
+				}
+				
+				if(y < 0){
+					y = 0;
+				}
+				
+				if(y > sBox.offsetHeight - square.offsetHeight-4){
+					y = sBox.offsetHeight - square.offsetHeight-4;
+				}				
+				square.style.left = x + 'px';
+				square.style.top = y + 'px';				
+				bImg.style.left = -x * bImg.offsetWidth / sImg.offsetWidth + 'px';
+				bImg.style.top = -y * bImg.offsetHeight / sImg.offsetHeight + 'px';
+			});
+			
+			sBox.addEvent('mouseout', function(){
+				square.style.display ='none';
+				bBox.style.display ='none';
+			});
+			
+			function left(){
+				var oldI = parseInt(imgUl.dataset['index']);
+				if(oldI > 0){
+					var i = oldI - 1;
+					var target = listImgs[i];
+					changeSpans(imgUl, listImgs, oldI, i, 'img-active', 'index');							
+					bImg.src = target.getAttribute('data-b');
+					sImg.src = target.getAttribute('data-s');						
+				}
+			}
+			
+			function right(){
+				var oldI = parseInt(imgUl.dataset['index']);
+				if(oldI < listImgs.length - 1){
+					var i = oldI + 1;
+					var target = listImgs[i];
+					changeSpans(imgUl, listImgs, oldI, i, 'img-active', 'index');							
+					bImg.src = target.getAttribute('data-b');
+					sImg.src = target.getAttribute('data-s');
+				}
+			}
+			
+			var leftSpan = document.querySelector('.img-list>.arrow-left');
+			var rightSpan = document.querySelector('.img-list>.arrow-right');
+			
+			leftSpan.addEvent('click', function(){
+				left();
+			});
+			
+			rightSpan.addEvent('click', function(){
+				right();
+			});
+			
+			
+		</script>
+		<script type="text/javascript">
+			var conBodySpans = document.querySelectorAll('.side-info-2>.content-head>span');
+			var conBodyDivs = document.querySelectorAll('.side-info-2>.content-body-list>div');
+			var contentList = document.querySelector('.side-info-2>.content-body-list');
+			var contentHead = document.querySelector('.side-info-2>.content-head');
+			console.log(contentHead);
+			contentHead.addEvent('click', function(){
+				var target = this.getTarget();
+				var oldI = parseInt(contentList.dataset['index']);
+				for(var i = 0; i < conBodySpans.length; i++){
+					if(target === conBodySpans[i]){
+						if(i !== oldI){
+							conBodyDivs[oldI].style.display = 'none';
+							conBodyDivs[i].style.display = 'block';
+							changeSpans(contentList, conBodySpans, oldI, i, 'span-active', 'index');														
+						}
+					}
+				}				
+			});                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+		</script>
+		<script>
+			$(function(){
+				$.ajax({
+					url: '../../getProduct',
+					type: 'get',
+					dataType: 'json',
+					success: function(data){
+						console.log(data);
+						if(data.OK){
+							$('#sec-kill').html('现在秒杀')
+						}else{
+							$('#sec-kill').html('链接无效')
+						}
+					}
+				})
+			})
+		</script>
+	</body>
+</html>
